@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -20,12 +21,16 @@ public class PlayerControl : MonoBehaviour
     Vector3 dampVelocity = Vector3.zero;
     [SerializeField] Vector2 maxTurnSpeed;
     [SerializeField] float nervousness=0.1f;
+    [SerializeField] GameObject foot;
+    AudioSource stepSource;
+    [SerializeField] MyAudioCue stepCue;
     CharacterController myController;
     Transform cameraTransform;
     Transform actualCamera;
     // Start is called before the first frame update
     void Start()
     {
+        stepSource = foot.GetComponent<AudioSource>();
         Cursor.visible =false;
         Cursor.lockState = CursorLockMode.Locked;
         
@@ -71,13 +76,27 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator HeadBob()
     {
-        float timer=0;
+        float timer= 0f;
         Vector3 camDamp = Vector3.zero;
         Vector3 targetPos;
+        bool walking = false;
         while(true){
+            print(timer);
+            if (characterVelocity.magnitude >0){
+                walking = true;
+            }
             timer += 3f*walkSpeed*characterVelocity.magnitude*Time.deltaTime;
             targetPos= cameraTransform.position + new Vector3(0,math.sin(timer)*0.8f,0)*characterVelocity.magnitude;
-            timer = timer%(2*math.PI);
+            if (timer>=2f*math.PI){
+                stepSource.PlayOneShot(stepCue.GetRandomClip());
+                timer-=2f*math.PI;
+            }
+            else if(walking &&characterVelocity.magnitude == 0){
+                walking = false;
+                timer = 0f;
+                stepSource.PlayOneShot(stepCue.GetRandomClip());
+            }
+            //timer = timer%(2*math.PI);
             actualCamera.position = Vector3.SmoothDamp(actualCamera.position,targetPos,ref camDamp,0.5f);
             actualCamera.LookAt(cameraTransform.position + cameraTransform.forward*8f);
             yield return null;

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IClick
 {
-    bool IsActive();
+    public void Interact();
+    public void Focus();
+    public void LoseFocus();
+    //bool IsActive();
 }
