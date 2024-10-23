@@ -46,7 +46,7 @@ public class LightUpComponent : MonoBehaviour
             
         }
         if (currentlyRunning is not null){StopCoroutine(currentlyRunning);} 
-        print("stopped Coroutine fadeout");
+        //print("stopped Coroutine fadeout");
         currentlyRunning = Fade(1f);
         StartCoroutine(currentlyRunning);
     }
@@ -54,7 +54,7 @@ public class LightUpComponent : MonoBehaviour
     public void Dim(){
         if(isLit){
             if (currentlyRunning is not null){StopCoroutine(currentlyRunning);}
-            print("stopped Coroutine fade in");
+            //print("stopped Coroutine fade in");
             currentlyRunning = Fade(-1f);
             StartCoroutine(currentlyRunning);
         }
@@ -62,7 +62,7 @@ public class LightUpComponent : MonoBehaviour
     }
 
     IEnumerator Fade(float direction){
-        print("starting coroutine");
+        //print("starting coroutine");
         float v = lightUpMaterial.GetFloat("_Strength");
         float p = direction*(v*2f-1f);
         do{
@@ -74,7 +74,7 @@ public class LightUpComponent : MonoBehaviour
         if (direction == -1){
             FinishDim();
         }
-        print("successfully finished coroutine");
+        //print("successfully finished coroutine");
     }
 
     void FinishDim(){

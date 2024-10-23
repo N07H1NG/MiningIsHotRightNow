@@ -27,6 +27,7 @@ public class PlayerControl : MonoBehaviour
     CharacterController myController;
     Transform cameraTransform;
     Transform actualCamera;
+    [SerializeField] float exhaustion;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,13 +61,6 @@ public class PlayerControl : MonoBehaviour
         lookVector = Vector3.SmoothDamp(lookVector,targetVector,ref dampVelocity,(5+Vector3.Dot(lookVector,targetVector)*nervousness)/20f);
         transform.forward = new Vector3(lookVector.x,0,lookVector.z).normalized;
         cameraTransform.forward = lookVector;
-        //transform.Rotate(axis: Vector3.up, angle: mouseDelta.x);
-        //print(mouseDelta.x);
-        //cameraTransform.transform.Rotate(axis: Vector3.right, angle: mouseDelta.y);
-        //cameraTransform.Rotate(cameraTransform.right,mouseDelta.y);
-        //cameraTransform.
-        //cameraTransform.forward = lookTransform.forward;
-        //gameObject.transform.forward =new Vector3(cameraTransform.forward.x,0,cameraTransform.forward.z).normalized;
         targetVelocity = transform.rotation* inputVector;
         Vector3 diff = targetVelocity-characterVelocity;
         characterVelocity += diff.normalized*math.clamp(inertia*Time.deltaTime,0,diff.magnitude);
@@ -76,18 +70,21 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator HeadBob()
     {
+        yield return null;
         float timer= 0f;
+        float timer2 = 0f;
         Vector3 camDamp = Vector3.zero;
         Vector3 targetPos;
         bool walking = false;
         while(true){
-            print(timer);
             if (characterVelocity.magnitude >0){
                 walking = true;
             }
             timer += 3f*walkSpeed*characterVelocity.magnitude*Time.deltaTime;
-            targetPos= cameraTransform.position + new Vector3(0,math.sin(timer)*0.8f,0)*characterVelocity.magnitude;
-            if (timer>=2f*math.PI){
+            timer2 += 2f*(1+exhaustion)*Time.deltaTime;
+            targetPos= cameraTransform.position + new Vector3(0,math.sin(timer)*0.8f,0)*characterVelocity.magnitude + new Vector3(0,math.sin(timer2)*0.1f,0)*math.pow(exhaustion,0.7f);
+
+            if (walking && timer>=2f*math.PI){
                 stepSource.PlayOneShot(stepCue.GetRandomClip());
                 timer-=2f*math.PI;
             }
@@ -96,12 +93,46 @@ public class PlayerControl : MonoBehaviour
                 timer = 0f;
                 stepSource.PlayOneShot(stepCue.GetRandomClip());
             }
-            //timer = timer%(2*math.PI);
+            timer2 = timer2%(2*math.PI);
+            //print(math.pow(exhaustion,0.6f));
             actualCamera.position = Vector3.SmoothDamp(actualCamera.position,targetPos,ref camDamp,0.5f);
             actualCamera.LookAt(cameraTransform.position + cameraTransform.forward*8f);
             yield return null;
         }
     }
+
+    /// <summary>
+    /// OnControllerColliderHit is called when the controller hits a
+    /// collider while performing a Move.
+    /// </summary>
+    /// <param name="hit">The ControllerColliderHit data associated with this collision.</param>
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.TryGetComponent(out Rigidbody rgbd)){
+            rgbd.AddForceAtPosition(characterVelocity,hit.point);
+        }
+    }
+
+
+    /// <summary>
+    /// This function is called when the behaviour becomes disabled or inactive.
+    /// </summary>
+    void OnDisable()
+    {
+        //exhaustion = 0.2f;
+        //StopAllCoroutines();
+    }
+    
+    /// <summary>
+    /// This function is called when the object becomes enabled and active.
+    /// </summary>
+    void OnEnable()
+    {
+        //exhaustion = 1f;
+        //StartCoroutine(HeadBob());
+    }
+
+
 
     
 }
