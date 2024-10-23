@@ -29,8 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _amount: 28
-    - _pow: 0.8
+    - _amount: 12
+    - _pow: 0.45
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &3989473427213968190

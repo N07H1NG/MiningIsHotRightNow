@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abba7a624d235d14fa96a90040e58420, type: 3}
+  m_Name: NewSteps
+  m_EditorClassIdentifier: 
+  containClips:
+  - {fileID: 8300000, guid: 265ee6dbcea71d943a2050861cdaae89, type: 3}
+  - {fileID: 8300000, guid: 6d53648ab0e6ed24991a76a72ce1db19, type: 3}
+  - {fileID: 8300000, guid: 8f72266df881af74baa868f6f2045d8e, type: 3}
+  - {fileID: 8300000, guid: b33cca505a0695a4d9f6132851df14fb, type: 3}
+  - {fileID: 8300000, guid: 99741ddd1b2f8a14097e41c2bb14dabf, type: 3}
+  - {fileID: 8300000, guid: a1dad18f1500ddf46984e8af884b7932, type: 3}

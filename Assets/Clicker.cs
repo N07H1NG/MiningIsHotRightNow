@@ -23,9 +23,10 @@ public class Clicker : MonoBehaviour
                     HoverOverObject(hit.collider.gameObject);
                 }
                 if(Input.GetMouseButtonDown(0)){
-                    print(focused);
+                    //print("mouse");
                     focused?.GetComponent<IClick>().Interact();
                 }
+                //print(focused);
             }
         else{
             focused?.GetComponent<IClick>().LoseFocus();

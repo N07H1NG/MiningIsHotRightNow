@@ -28,6 +28,10 @@ public class PlayerControl : MonoBehaviour
     Transform cameraTransform;
     Transform actualCamera;
     [SerializeField] float exhaustion;
+    [SerializeField] float exhaustionSpeed;
+    [SerializeField] float restSpeed;
+    [SerializeField] float baseExhaustion;
+    [SerializeField] float exhaustionCap;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,9 +56,9 @@ public class PlayerControl : MonoBehaviour
         mouseDelta = math.clamp(mouseDelta,-1*maxTurnSpeed,maxTurnSpeed);
         float d = Vector3.Dot(targetVector,Vector3.up);
         if(math.abs(d) > 0.9f){
-            print("Close");
+            //print("Close");
             mouseDelta.y *= (mouseDelta.y*d>=0)?1:0;
-            print(mouseDelta.y);
+            //print(mouseDelta.y);
         }
         targetVector = Quaternion.Euler(0,mouseDelta.x,0f) * targetVector;
         targetVector = Quaternion.AngleAxis(mouseDelta.y,Vector3.Cross(Vector3.up,targetVector) )*targetVector;
@@ -79,12 +83,17 @@ public class PlayerControl : MonoBehaviour
         while(true){
             if (characterVelocity.magnitude >0){
                 walking = true;
+                exhaustion += Time.deltaTime*exhaustionSpeed;
             }
+            else{
+                exhaustion -= Time.deltaTime*restSpeed;
+            }
+            exhaustion = math.clamp(exhaustion,baseExhaustion,exhaustionCap);
             timer += 3f*walkSpeed*characterVelocity.magnitude*Time.deltaTime;
             timer2 += 2f*(1+exhaustion)*Time.deltaTime;
-            targetPos= cameraTransform.position + new Vector3(0,math.sin(timer)*0.8f,0)*characterVelocity.magnitude + new Vector3(0,math.sin(timer2)*0.1f,0)*math.pow(exhaustion,0.7f);
+            targetPos= cameraTransform.position + new Vector3(0,math.sin(timer)*0.4f,0)*characterVelocity.magnitude + new Vector3(0,math.sin(timer2)*0.1f,0)*math.pow(exhaustion,0.7f);
 
-            if (walking && timer>=2f*math.PI){
+            if (walking && timer>=math.PI){
                 stepSource.PlayOneShot(stepCue.GetRandomClip());
                 timer-=2f*math.PI;
             }
@@ -95,7 +104,7 @@ public class PlayerControl : MonoBehaviour
             }
             timer2 = timer2%(2*math.PI);
             //print(math.pow(exhaustion,0.6f));
-            actualCamera.position = Vector3.SmoothDamp(actualCamera.position,targetPos,ref camDamp,0.5f);
+            actualCamera.position = Vector3.SmoothDamp(actualCamera.position,targetPos,ref camDamp,0.3f);
             actualCamera.LookAt(cameraTransform.position + cameraTransform.forward*8f);
             yield return null;
         }
@@ -119,6 +128,7 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     void OnDisable()
     {
+        characterVelocity = Vector3.zero;
         //exhaustion = 0.2f;
         //StopAllCoroutines();
     }
