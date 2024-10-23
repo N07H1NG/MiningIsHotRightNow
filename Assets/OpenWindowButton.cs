@@ -9,6 +9,8 @@ public class OpenWindowButton : LapTopButton
     public override void StartClick(GameObject mouse = null)
     {
         Window.SetActive(true);
+        Window.transform.SetAsLastSibling();
+        mouse.transform.SetAsLastSibling();
     }
     public override void EndClick()
     {

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.UIElements;
+//using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -30,7 +30,8 @@ public class VirtualScreen : MonoBehaviour
     }
     // Start is called before the first frame update
     public void LoadScreen(GameObject cam){
-        
+        //Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = true;
         //cursor.gameObject.SetActive(true);
         cursor.rectTransform.anchoredPosition = Vector2.zero;
         plrCamera = cam;
@@ -39,11 +40,13 @@ public class VirtualScreen : MonoBehaviour
     }
 
     IEnumerator LookAtMouse(){
+        
         lookTarget = cursor.transform.position;
         Vector3 vel = Vector3.zero;
         while (true){
             lookTarget = Vector3.SmoothDamp(lookTarget, cursor.transform.position, ref vel,1f);
             plrCamera.transform.LookAt(lookTarget);
+            //Mouse.current.WarpCursorPosition(plrCamera.GetComponentInChildren<Camera>().WorldToScreenPoint(cursor.transform.position));
         yield return null;
         }
     }
