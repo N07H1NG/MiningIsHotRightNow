@@ -11,10 +11,10 @@ public class lightswitch : MonoBehaviour, IClick
     LightUpComponent lightUp;
     AudioSource clickSfx;
     Color eCol;
-    float colorstate = 1f;
+    float colorstate = 0f;
     [SerializeField]MyAudioCue cue;
     Material coilMat;
-    bool state = true;
+    bool state = false;
     // Start is called before the first frame update
     void Start()
     {

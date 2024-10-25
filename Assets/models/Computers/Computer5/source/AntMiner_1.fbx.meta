@@ -3,7 +3,42 @@ guid: 1eae074bb7d4e8e46b8b67b03ef3b71e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Antminer Metal
+    second: {fileID: 2100000, guid: 2e098d1688bde8e4ba032dc2b1689d02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black Fan
+    second: {fileID: 2100000, guid: 967d94cbcc4d0424895e7d3c5c1f01f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark
+    second: {fileID: 2100000, guid: 614759ccdf12a044282a6584e23a0a53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green Card
+    second: {fileID: 2100000, guid: 872385df4f2c47a4483ef79c5ab7a55f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 09f4fb79cc462924ba5188cf6188c8a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Warning Sign
+    second: {fileID: 2100000, guid: 10adc03328749d540996999c78df2cfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cable
+    second: {fileID: 2100000, guid: a7837e6b87018fe4abdd6eb168c1297e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

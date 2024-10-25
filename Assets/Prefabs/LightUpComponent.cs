@@ -28,20 +28,25 @@ public class LightUpComponent : MonoBehaviour
         
 
         foreach (MeshFilter flt in GetComponentsInChildren<MeshFilter>()){
+            
             Mesh mesh = flt.mesh;
-            var meshSubMeshCount = mesh.subMeshCount;
-            if (meshSubMeshCount > 1)
-            {
-                var descArray = new SubMeshDescriptor[meshSubMeshCount + 1];
-                for (int i = 0; i < meshSubMeshCount; i++)
+            if(!MeshUpdater.updtref.updated.Contains(mesh)){
+                var meshSubMeshCount = mesh.subMeshCount;
+                if (meshSubMeshCount > 1)
                 {
-                    descArray[i] = mesh.GetSubMesh(i);
+                    var descArray = new SubMeshDescriptor[meshSubMeshCount + 1];
+                    for (int i = 0; i < meshSubMeshCount; i++)
+                    {
+                        descArray[i] = mesh.GetSubMesh(i);
+                    }
+                    var lastMesh = descArray[meshSubMeshCount - 1];
+                    descArray[meshSubMeshCount] =
+                        new SubMeshDescriptor(0, lastMesh.indexStart + lastMesh.indexCount);
+                    mesh.SetSubMeshes(descArray);
                 }
-                var lastMesh = descArray[meshSubMeshCount - 1];
-                descArray[meshSubMeshCount] =
-                    new SubMeshDescriptor(0, lastMesh.indexStart + lastMesh.indexCount);
-                mesh.SetSubMeshes(descArray);
+                MeshUpdater.updtref.updated.Add(mesh);
             }
+            
         }
        
         //changedMat

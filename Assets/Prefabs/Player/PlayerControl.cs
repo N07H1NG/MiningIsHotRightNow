@@ -11,9 +11,9 @@ using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] float walkSpeed;
-    [SerializeField] float inertia;
-    Vector3 characterVelocity;
+    [SerializeField] public float walkSpeed;
+    [SerializeField] public float inertia;
+    public Vector3 characterVelocity;
     Vector3 targetVelocity;
     Vector3 inputVector;
     Vector2 mouseDelta;
@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     Vector3 targetVector;
     Vector3 dampVelocity = Vector3.zero;
     [SerializeField] Vector2 maxTurnSpeed;
-    [SerializeField] float nervousness=0.1f;
+    [SerializeField] public float nervousness=0.1f;
     [SerializeField] GameObject foot;
     AudioSource stepSource;
     [SerializeField] MyAudioCue stepCue;
@@ -29,10 +29,10 @@ public class PlayerControl : MonoBehaviour
     Transform cameraTransform;
     Transform actualCamera;
     [SerializeField] float exhaustion;
-    [SerializeField] float exhaustionSpeed;
-    [SerializeField] float restSpeed;
-    [SerializeField] float baseExhaustion;
-    [SerializeField] float exhaustionCap;
+    [SerializeField] public float exhaustionSpeed;
+    [SerializeField] public float restSpeed;
+    [SerializeField] public float baseExhaustion;
+    [SerializeField] public float exhaustionCap;
     // Start is called before the first frame update
     void Start()
     {
@@ -108,7 +108,7 @@ public class PlayerControl : MonoBehaviour
             timer2 = timer2%(2*math.PI);
             //print(math.pow(exhaustion,0.6f));
             actualCamera.position = Vector3.SmoothDamp(actualCamera.position,targetPos,ref camDamp,0.3f);
-            actualCamera.LookAt(cameraTransform.position + cameraTransform.forward*8f);
+            actualCamera.LookAt(cameraTransform.position + cameraTransform.forward*8f,cameraTransform.up);
             yield return null;
         }
     }

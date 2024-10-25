@@ -7,8 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Antminer Metal
+    second: {fileID: 2100000, guid: 08e68cc44135bab409cfd3f22daf98d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black Fan
+    second: {fileID: 2100000, guid: 6d34384fcc5d7534aa886bcb75784be1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark
+    second: {fileID: 2100000, guid: badeb3e3a0268fc4b9c61fbbcc71e435, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lights
+    second: {fileID: 2100000, guid: 8878842a13cccea4eb443c07b7fcddb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Metal
     second: {fileID: 2100000, guid: 20b77f8ba7adfaf41990ebb09a3580de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Warning Sign
+    second: {fileID: 2100000, guid: 7430e30fd530e7842ba1f642cdfd5fae, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

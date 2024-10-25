@@ -16,8 +16,8 @@ public class MoneyHeatMaker : MonoBehaviour
         moneyinterval = m.y;
         temp = h.x;
         tempinterval = h.y;
-        print(ProgressManager.prmInstance);
-        //ProgressManager.prmInstance.contributors.Add(this);
+        //print(ProgressManager.prmInstance);
+        ProgressManager.prmInstance.contributors.Add(this);
         
     }
     public void TurnOn()
@@ -39,7 +39,7 @@ public class MoneyHeatMaker : MonoBehaviour
     public void PassTimeInstantly(float t){
         if (on){
             ProgressManager.prmInstance.wallet += math.floor(t/moneyinterval)*money;
-            ProgressManager.prmInstance.wallet += math.floor(t/moneyinterval)*money;
+            ProgressManager.prmInstance.ChangeTemperature(math.floor(t/tempinterval)*temp);
         }
     }
 

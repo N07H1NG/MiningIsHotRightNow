@@ -27,7 +27,7 @@ public class Bed : MonoBehaviour, IClick
     }
     // Start is called before the first frame update
     public void Focus(){
-        print("bedwasfocused");
+        //print("bedwasfocused");
         lightUp.LightUp();
     }
     public void LoseFocus(){
@@ -65,7 +65,8 @@ public class Bed : MonoBehaviour, IClick
             //print(p);
             yield return null;
         }while ((playerCamera.transform.position - cameraTarget.position).magnitude >=0.4f || p<=1f);
-        ProgressManager.prmInstance.PassTimeInstantly(100f);
+        yield return new WaitForSeconds(2f);
+        ProgressManager.prmInstance.PassTimeInstantly(1000f);
         StartCoroutine(FlyBackUp());
     }
 
@@ -82,7 +83,7 @@ public class Bed : MonoBehaviour, IClick
             //print(cameraTarget.rotation);
             //print(playerCamera.transform.rotation);
             timer += Time.deltaTime;
-            p = math.pow(timer/2f, 2f);
+            p = math.pow(timer/1.2f, 0.8f);
             //print("WHAT " + (playerCamera.transform.position - cameraTarget.position).magnitude.ToString());
             //print(p);
             yield return null;
