@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor.Presets;
 using UnityEditor;
-
+#endif
 public class WireController : MonoBehaviour
 {
     //author: nicogarcia.s.dev / nicogarcia_s_dev
@@ -96,12 +97,13 @@ public class WireController : MonoBehaviour
     public Vector3 selectPosition;
     public Transform mousePossHelper;
 
+    #if UNITY_EDITOR
     [Header("PRESETS")]
     /// <summary>
     /// Presset of the ConfigurableJoint used by the segments.
     /// </summary>
     public Preset presetJoint;
-
+    #endif
     private void Start()
     {
         mousePossHelper.gameObject.SetActive(false);
@@ -111,7 +113,7 @@ public class WireController : MonoBehaviour
         if (usePhysics)
         {
             RenderWireMesh();
-            DistanceBetweenStartAndEnd();
+            //DistanceBetweenStartAndEnd();
         }
     }
 
@@ -164,10 +166,10 @@ public class WireController : MonoBehaviour
         /// </summary>
         SetMaxDistance();
     }
-
+    
     public void AddStar()
     {
-
+        #if UNITY_EDITOR
 
         if(starAnchorTemp == null)
         {
@@ -187,10 +189,12 @@ public class WireController : MonoBehaviour
             DestroyImmediate(starAnchorTemp.GetComponent<Collider>());
             DestroyImmediate(starAnchorTemp.GetComponent<Rigidbody>());
         }
+        #endif
     }
 
     public void AddSegment()
     {
+        #if UNITY_EDITOR
         #region undo
         undoCount = 0;
         #endregion
@@ -225,10 +229,12 @@ public class WireController : MonoBehaviour
         #region undo
         undoSegments.Add(undoCount);
         #endregion
+        #endif
     }
 
     public void AddEnd()
     {
+        #if UNITY_EDITOR
         //Adds the final anchor point.
         int lastSegment = segments.Count - 1;
         endAnchorTemp = Instantiate(endAnchorPoint, segments[lastSegment].position + (segments[lastSegment].forward * .0005f), segments[lastSegment].rotation, transform);
@@ -253,11 +259,12 @@ public class WireController : MonoBehaviour
             DestroyImmediate(endAnchorTemp.GetComponent<Rigidbody>());
         }
 
-
+        #endif
     }
 
     public void AddPlug()
     {
+        #if UNITY_EDITOR
         //Instances the plug in the selected position.
         plugTemp = Instantiate(plugObjt, selectPosition, plugObjt.transform.rotation, transform);
         PlugController plugScritp = plugTemp.GetComponent<PlugController>();
@@ -265,9 +272,10 @@ public class WireController : MonoBehaviour
         plugScritp.endAnchor = endAnchorTemp;
         plugScritp.endAnchorRB = endAnchorTemp.GetComponent<Rigidbody>();
         plugScritp.wireController = this;
+        #endif
 
     }
-
+    
     public void SetMaxDistance()
     {
         maxDistanceToStarAnchor = segments.Count * segmentsSeparation;
@@ -297,7 +305,7 @@ public class WireController : MonoBehaviour
                 segment.GetComponent<SphereCollider>().radius = segmentsRadius;
             }
     }
-
+    
     #region Buttons
     public void Clear()
     {
@@ -360,7 +368,7 @@ public class WireController : MonoBehaviour
         //Wire rendering updated
         RenderWireMesh();
     }
-
+    
     public void RenderWireMesh()
     {
         /// <summary>

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 6ff27ffb39add154a8dc193405e537f5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - clck: {fileID: 11400000, guid: 424737403a414e74fa18990d0c5dcd82, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

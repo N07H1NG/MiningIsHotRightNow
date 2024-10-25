@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 using UnityEngine.UIElements;
@@ -50,6 +51,8 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetAxis("Mouse ScrollWheel") != 0f){print(Input.GetAxis("Mouse ScrollWheel"));}
+        
         inputVector = new Vector3(Input.GetAxis("Horizontal"), 0,Input.GetAxis("Vertical")).normalized;
         mouseDelta = new Vector2(Input.GetAxis("Mouse X"),-1*Input.GetAxis("Mouse Y"));
         //mouseDelta*= Time.deltaTime*100;

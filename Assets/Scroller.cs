@@ -37,23 +37,24 @@ public class Scroller : LapTopButton
     void Update()
     {
         if (transform.parent.GetSiblingIndex() != transform.parent.parent.childCount-2){
-            print("bad");
+            //print("bad");
             //print(transform.parent.parent.childCount);
             myActive = false;
         }
         else{
-            print("GOod");
+            
+            myActive = true;
         }
 
         scrollvel = Mathf.SmoothDamp(scrollvel,0,ref dampvel,0.4f);
         float d = Input.GetAxis("Mouse ScrollWheel");
         //print(d);
         if(d !=0f && myActive){
-            print("ACTIVE");
-            scrollvel = d*200f;
+            //print("ACTIVE");
+            scrollvel = d*20f;
         }
 
-        scrollRectRef.verticalNormalizedPosition = math.clamp(scrollRectRef.verticalNormalizedPosition+(scrollvel*Time.deltaTime),0,2f);
+        scrollRectRef.verticalNormalizedPosition = math.clamp(scrollRectRef.verticalNormalizedPosition+(scrollvel*Time.deltaTime),0,1f);
     }
 
 

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1622069412837038643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2406304268652292004}
+  - component: {fileID: 247466404252050887}
+  m_Layer: 0
+  m_Name: Computer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2406304268652292004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622069412837038643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &247466404252050887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622069412837038643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5dd35d8c8a88a143994d85807424bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  types:
+  - {fileID: 6681739864134517858, guid: ab70f3a7e95b93d419473905bef08d46, type: 3}
+  - {fileID: 9070046059909213133, guid: ae7e5bc4f7e7fc740b4f138e700c632f, type: 3}
+  - {fileID: 9085282141219966460, guid: b30958aae56dc05419e3d1b1f3e5d5c0, type: 3}
+  - {fileID: 2280275912497967264, guid: 9544c8044dbd9fe4592698821317bdcb, type: 3}
+  - {fileID: 5988083345387628778, guid: bbdfdd4e8f3503941b632ade1602cae6, type: 3}
+  - {fileID: 5868415550281637768, guid: 39c05b8903c89bb41a9cb58f0e12c347, type: 3}
+  heatvalues:
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  moneyvalues:
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}
+  - {x: 0, y: 12}

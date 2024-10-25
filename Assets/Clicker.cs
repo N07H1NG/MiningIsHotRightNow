@@ -15,7 +15,7 @@ public class Clicker : MonoBehaviour
     void Update()
     {
         Ray ray = GetComponent<Camera>().ScreenPointToRay(new Vector3(Screen.width/2f,Screen.height/2f, 0));
-        if (Physics.Raycast(ray, out RaycastHit hit, 3))
+        if (Physics.Raycast(ray, out RaycastHit hit, 4f))
             {
                 if (hit.collider.gameObject != focused){
                     focused?.GetComponent<IClick>().LoseFocus();
