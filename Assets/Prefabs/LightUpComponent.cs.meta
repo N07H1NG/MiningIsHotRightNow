@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - lightUpMaterial: {fileID: 2100000, guid: de8d783a46c86124b80cf51d6dca589e, type: 2}
+  - lightUpFB: {fileID: 2100000, guid: b95cef1404be5a64b9d0c978d676a941, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

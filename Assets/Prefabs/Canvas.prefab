@@ -248,7 +248,7 @@ MonoBehaviour:
   purchase: {fileID: 8300000, guid: 9d03b5887961d224c8ddba48ffd9448d, type: 3}
   failpurchase: {fileID: 8300000, guid: 90b1af039f51d3d4cb9b8121b16d9515, type: 3}
   bound: {fileID: 442880309323128396}
-  price: 649
+  price: 949
   index: 4
 --- !u!1 &1948641310614699007
 GameObject:
@@ -721,7 +721,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: GAMER BEAST RGB ULTRA WHITE KILLER. It has a slightly better videocard
-    and a lot of lights- 479$
+    and a lot of lights- 679$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1549,7 +1549,7 @@ MonoBehaviour:
   purchase: {fileID: 8300000, guid: 9d03b5887961d224c8ddba48ffd9448d, type: 3}
   failpurchase: {fileID: 8300000, guid: 90b1af039f51d3d4cb9b8121b16d9515, type: 3}
   bound: {fileID: 442880309323128396}
-  price: 479
+  price: 679
   index: 1
 --- !u!1 &3991040051800476723
 GameObject:
@@ -1756,7 +1756,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: FleshFlyMinerX7 - Hardware manufactured specifically for mining cryptocurrency.
-    - 649$
+    - 949$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2325,7 +2325,7 @@ MonoBehaviour:
   purchase: {fileID: 8300000, guid: 9d03b5887961d224c8ddba48ffd9448d, type: 3}
   failpurchase: {fileID: 8300000, guid: 90b1af039f51d3d4cb9b8121b16d9515, type: 3}
   bound: {fileID: 442880309323128396}
-  price: 849
+  price: 1549
   index: 3
 --- !u!1 &5177756659762064913
 GameObject:
@@ -2551,7 +2551,7 @@ MonoBehaviour:
   purchase: {fileID: 8300000, guid: 9d03b5887961d224c8ddba48ffd9448d, type: 3}
   failpurchase: {fileID: 8300000, guid: 90b1af039f51d3d4cb9b8121b16d9515, type: 3}
   bound: {fileID: 442880309323128396}
-  price: 2249
+  price: 4249
   index: 5
 --- !u!1 &5391401358830445931
 GameObject:
@@ -2865,7 +2865,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FleshFlyMinerX17 - Now we're talking. - 849$
+  m_text: FleshFlyMinerX17 - Now we're talking. - 1549$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3444,7 +3444,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Supernova Assembly - You will be rich in seconds - 2249$
+  m_text: Supernova Assembly - You will be rich in seconds - 4249$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5466,6 +5466,18 @@ PrefabInstance:
     - target: {fileID: 3956149827352164296, guid: 54fc97a5dc3d24048a48a0fd93f96f2a, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0.43327805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610164433603955232, guid: 54fc97a5dc3d24048a48a0fd93f96f2a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610164433603955232, guid: 54fc97a5dc3d24048a48a0fd93f96f2a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.90796965
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610164433603955232, guid: 54fc97a5dc3d24048a48a0fd93f96f2a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.514151
       objectReference: {fileID: 0}
     - target: {fileID: 4685262909304839532, guid: 54fc97a5dc3d24048a48a0fd93f96f2a, type: 3}
       propertyPath: m_ShowMaskGraphic

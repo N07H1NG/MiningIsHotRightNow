@@ -40,7 +40,7 @@ public class BoxedPC : MonoBehaviour, IClick
                 ComputerCreator.crtInst.CreateComputer(index,target_position-Vector3.up*cld.bounds.extents.y,dRot);
                 StopAllCoroutines();
                 cld.enabled = false;
-                Destroy(gameObject,0.5f);
+                Destroy(gameObject,0.3f);
             }
         }
     }
@@ -67,7 +67,7 @@ public class BoxedPC : MonoBehaviour, IClick
             LayerMask msk = LayerMask.GetMask(lrs);
             msk = ~msk;
             Vector3 wrldScale = new Vector3(cld.size.x*transform.lossyScale.x,cld.size.y*transform.lossyScale.y,cld.size.z*transform.lossyScale.z);
-            wrldScale=transform.rotation*wrldScale;
+            //wrldScale=transform.rotation*wrldScale;
             wrldScale = math.abs(wrldScale)/2f;
             //print(wrldScale + " and bound by" + cld.bounds.extents*2f);
             if(Physics.BoxCast(cam.transform.position,wrldScale,cam.transform.forward,out hit,transform.rotation,4,msk)){

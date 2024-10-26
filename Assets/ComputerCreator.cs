@@ -34,6 +34,8 @@ public class ComputerCreator : MonoBehaviour
         GameObject cmptInst = Instantiate(types[index]);
         cmptInst.transform.position = pos;
         cmptInst.transform.rotation = rot * cmptInst.transform.rotation;
+        print(cmptInst.GetComponent<LightUpComponent>());
+        cmptInst.GetComponent<LightUpComponent>().LightUpDelayed();
         //cmptInst.transform.rotation =  rot*transform.rotation;
         cmptInst.GetComponent<MoneyHeatMaker>().SetUpMoneyHeatMaker(heatvalues[index],moneyvalues[index]);
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ public class LightUpComponent : MonoBehaviour
     List<MeshRenderer> mrds;
     List<Material>[] mats;
     List<Material>[] matsAdjusted;
+    bool fallback = false;
     public  Material lightUpMaterial;
+    //public Material lightUpFB;
     bool isLit = false;
     IEnumerator currentlyRunning;
     // Start is called before the first frame update
@@ -26,26 +29,28 @@ public class LightUpComponent : MonoBehaviour
         mats = new List<Material>[l];
         matsAdjusted = new List<Material>[l];
         
-
         foreach (MeshFilter flt in GetComponentsInChildren<MeshFilter>()){
             
             Mesh mesh = flt.mesh;
-            if(!MeshUpdater.updtref.updated.Contains(mesh)){
-                var meshSubMeshCount = mesh.subMeshCount;
-                if (meshSubMeshCount > 1)
+
+            var meshSubMeshCount = mesh.subMeshCount;
+            if (meshSubMeshCount > 1)
+            {
+                var descArray = new SubMeshDescriptor[meshSubMeshCount + 1];
+                for (int i = 0; i < meshSubMeshCount; i++)
                 {
-                    var descArray = new SubMeshDescriptor[meshSubMeshCount + 1];
-                    for (int i = 0; i < meshSubMeshCount; i++)
-                    {
-                        descArray[i] = mesh.GetSubMesh(i);
-                    }
-                    var lastMesh = descArray[meshSubMeshCount - 1];
-                    descArray[meshSubMeshCount] =
-                        new SubMeshDescriptor(0, lastMesh.indexStart + lastMesh.indexCount);
-                    mesh.SetSubMeshes(descArray);
+                    descArray[i] = mesh.GetSubMesh(i);
                 }
-                MeshUpdater.updtref.updated.Add(mesh);
+                var lastMesh = descArray[meshSubMeshCount - 1];
+               
+                
+                descArray[meshSubMeshCount] = new SubMeshDescriptor(0, lastMesh.indexStart + lastMesh.indexCount);
+                try {mesh.SetSubMeshes(descArray);
+                }catch(ArgumentException){
+                    fallback = true;
+                }
             }
+
             
         }
        
@@ -55,9 +60,20 @@ public class LightUpComponent : MonoBehaviour
             mats[i] = new List<Material>();
             
             mrds[i].GetSharedMaterials(mats[i]);
-            matsAdjusted[i] = new List<Material>(mats[i]);
-            //matsAdjusted[i].Insert(0,lightUpMaterial);
-            matsAdjusted[i].Add(lightUpMaterial);
+            if (!fallback){
+                matsAdjusted[i] = new List<Material>(mats[i]);
+                //matsAdjusted[i].Insert(0,lightUpMaterial);
+                matsAdjusted[i].Add(lightUpMaterial);
+            }
+            else{
+                matsAdjusted[i] = new List<Material>();
+                foreach(Material mat in mats[i]){
+                    
+                    //Material changedLight = new Material(lightUpFB);
+                    //changedLight.SetTexture("_MainTexture",mat.GetTexture("_BaseMap"));
+                    matsAdjusted[i].Add(lightUpMaterial);
+                }
+            }
         }
     }
 
@@ -110,6 +126,11 @@ public class LightUpComponent : MonoBehaviour
         for(int i = 0;i<mrds.Count;i++){
             mrds[i].SetSharedMaterials(mats[i]);
         }
+    }
+
+    public IEnumerator LightUpDelayed(){
+        yield return null;
+        LightUp();
     }
 
 
