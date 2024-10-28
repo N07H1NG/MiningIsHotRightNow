@@ -12,6 +12,7 @@ public class ComputerGeneric : MonoBehaviour, IClick
     public MyAudioCue clck;
 
     AudioSource myHum;
+    AudioSource myClick;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,8 @@ public class ComputerGeneric : MonoBehaviour, IClick
         ltp = gameObject.GetComponent<LightUpComponent>();
         myMhm =gameObject.GetComponent<MoneyHeatMaker>();
         myHum = GetComponent<AudioSource>();
+        myClick = gameObject.AddComponent<AudioSource>();
+        myClick.volume = 0.3f;
     }
 
     // Update is called once per frame
@@ -29,10 +32,10 @@ public class ComputerGeneric : MonoBehaviour, IClick
 
     void IClick.Interact(){
         on = !on;
-        myHum.PlayOneShot(clck.GetRandomClip());
+        myClick.PlayOneShot(clck.GetRandomClip());
         if(on){
             myMhm.TurnOn();
-            myHum.PlayDelayed(0.2f);
+            myHum.Play();
             
         }
         else{

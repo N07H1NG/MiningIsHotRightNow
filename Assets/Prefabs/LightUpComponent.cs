@@ -24,6 +24,7 @@ public class LightUpComponent : MonoBehaviour
     /// </summary>
     void Start()
     {
+        lightUpMaterial = new Material(lightUpMaterial);
         mrds = new List<MeshRenderer>(gameObject.GetComponentsInChildren<MeshRenderer>());
         int l = mrds.Count;
         mats = new List<Material>[l];
